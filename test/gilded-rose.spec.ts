@@ -69,4 +69,16 @@ describe('Gilded Rose Unit Tests', function () {
         expect(testItemQuality(item, 30)).to.equal(expectedQuality);
     });
 
+    it('Conjured Test', function() {
+        const item = new Item("Conjured Mana Cake", 25, 20);
+        const expectedQuality = 10;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Conjured Expired Test', function() {
+        const item = new Item("Conjured Mana Cake", 0, 25);
+        const expectedQuality = 5;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
 });

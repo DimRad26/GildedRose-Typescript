@@ -59,6 +59,10 @@ export class GildedRose {
                 }
             }
 
+            if (name.startsWith('Conjured')) {
+                expirationCoeficient *= 2;
+            }
+
             this.items[i].quality = this.cap(quality + expirationCoeficient * updateAmount);
         }
 

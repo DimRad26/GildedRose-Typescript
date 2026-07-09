@@ -1,13 +1,6 @@
 import { Item, GildedRose } from '../app/gilded-rose';
 import {expect} from "chai";
 
-function printInn(Inn: GildedRose) : void {
-    let items = Inn.items;
-    for (let i = 0; i < items.length; i++) {
-        console.log(items[i].name, ": RemainingDays:", items[i].sellIn, "Quality:", items[i].quality);
-    }
-}
-
 function testInn(items: Item[], days: number = 0) : number[] {
     let Inn: GildedRose = new GildedRose(items);
     let itemQualities : number[] = [];
@@ -18,15 +11,6 @@ function testInn(items: Item[], days: number = 0) : number[] {
         itemQualities.push(Inn.items[i].quality);
 
     return itemQualities;
-}
-
-function testItemQuality(item: Item, days: number = 0) : number {
-    let Inn = new GildedRose([item]);
-    for (let i = 0; i < days; i++)
-        Inn.updateQuality();
-
-    let updatedItem = Inn.items[0];
-    return updatedItem.quality;
 }
 
 describe('Gilded Rose Matser Golden Test', function () {

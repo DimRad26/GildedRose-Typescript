@@ -1,14 +1,21 @@
 import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
 
-/*
-describe('Gilded Rose', function () {
+function testItemQuality(item: Item, days: number = 0) : number {
+    let Inn = new GildedRose([item]);
+    for (let i = 0; i < days; i++)
+        Inn.updateQuality();
 
-    it('should foo', function() {
-        const gildedRose = new GildedRose([ new Item('foo', 0, 0) ]);
-        const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal('fixme');
+    let updatedItem = Inn.items[0];
+    return updatedItem.quality;
+}
+
+describe('Gilded Rose Unit Tests', function () {
+
+    it('Test testing', function() {
+        const item = new Item("Nothing", 0, 0);
+        const expectedQuality = 0;
+        expect(testItemQuality(item, 0)).to.equal(expectedQuality);
     });
 
 });
-*/

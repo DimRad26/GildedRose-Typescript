@@ -1,6 +1,6 @@
+//Unit testing
 import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
-// start file
 
 function testItemQuality(item: Item, days: number = 0) : number {
     let Inn = new GildedRose([item]);
@@ -67,6 +67,18 @@ describe('Gilded Rose Unit Tests', function () {
         const item = new Item("Backstage passes to a TAFKAL80ETC concert", 25, 10);
         const expectedQuality = 0;
         expect(testItemQuality(item, 30)).to.equal(expectedQuality);
+    });
+
+    it('Conjured Test', function() {
+        const item = new Item("Conjured Mana Cake", 25, 20);
+        const expectedQuality = 10;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Conjured Expired Test', function() {
+        const item = new Item("Conjured Mana Cake", 0, 25);
+        const expectedQuality = 5;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
     });
 
 });

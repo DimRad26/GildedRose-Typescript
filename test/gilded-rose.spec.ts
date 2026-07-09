@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { Item, GildedRose } from '../app/gilded-rose';
-// start file
 
 function testItemQuality(item: Item, days: number = 0) : number {
     let Inn = new GildedRose([item]);

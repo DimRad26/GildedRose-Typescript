@@ -32,4 +32,40 @@ describe('Gilded Rose Unit Tests', function () {
             .to.deep.equal(expectedQuality);
     });
 
+    it('Test Aged Brie - Normal Behaviour', function() {
+        const item = new Item("Aged Brie", 5, 10);
+        const expectedQuality = 15;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Test Aged Brie - Expired Behaviour', function() {
+        const item = new Item("Aged Brie", 5, 10);
+        const expectedQuality = 25;
+        expect(testItemQuality(item, 10)).to.equal(expectedQuality);
+    });
+
+    it('Concert tickets - Normal Behaviour', function() {
+        const item = new Item("Backstage passes to a TAFKAL80ETC concert", 50, 10);
+        const expectedQuality = 15;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Concert tickets - Under 10 Days Behaviour', function() {
+        const item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10);
+        const expectedQuality = 20;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Concert tickets - Under 5 Days Behaviour', function() {
+        const item = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10);
+        const expectedQuality = 25;
+        expect(testItemQuality(item, 5)).to.equal(expectedQuality);
+    });
+
+    it('Concert tickets - Under 5 Days Behaviour', function() {
+        const item = new Item("Backstage passes to a TAFKAL80ETC concert", 25, 10);
+        const expectedQuality = 0;
+        expect(testItemQuality(item, 30)).to.equal(expectedQuality);
+    });
+
 });

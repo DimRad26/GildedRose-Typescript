@@ -62,7 +62,7 @@ describe('Gilded Rose Unit Tests', function () {
         expect(testItemQuality(item, 5)).to.equal(expectedQuality);
     });
 
-    it('Concert tickets - Under 5 Days Behaviour', function() {
+    it('Concert tickets - Expiration Behaviour', function() {
         const item = new Item("Backstage passes to a TAFKAL80ETC concert", 25, 10);
         const expectedQuality = 0;
         expect(testItemQuality(item, 30)).to.equal(expectedQuality);

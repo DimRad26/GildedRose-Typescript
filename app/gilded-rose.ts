@@ -33,33 +33,28 @@ export class GildedRose {
             this.items[i].sellIn = this.items[i].sellIn - 1;
 
             // Handle the update for each type of product
-            let updateAmount = -1;
+            let updateAmount: number = -1;
+            let expirationCoeficient: number = this.items[i].sellIn < 0 ? 2 : 1;
 
             // Handle AgedBrie update amount
             if (this.items[i].name == 'Aged Brie') {
                 updateAmount = +1;
             }
+
             // Handle Backstage passes update amount - based on sellIn
             if (this.items[i].name.startsWith('Backstage passes')) {
                 updateAmount = +1;
                 if (this.items[i].sellIn < 10)
-                    updateAmount += 1;
+                    expirationCoeficient = 2;
                 if (this.items[i].sellIn < 5)
-                    updateAmount += 1;
-            }
-
-            this.items[i].quality += updateAmount;
-
-            // Handle Expired Items
-            if (this.items[i].sellIn < 0) {
-                if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    this.items[i].quality = 0;
-                } else {
-                    this.items[i].quality += updateAmount;
+                    expirationCoeficient = 3;
+                if (this.items[i].sellIn < 0) {
+                    expirationCoeficient = -1;
+                    updateAmount = this.items[i].quality;
                 }
-
             }
 
+            this.items[i].quality += expirationCoeficient * updateAmount;
             this.items[i].quality = this.cap(this.items[i].quality);
         }
 

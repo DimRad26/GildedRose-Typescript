@@ -18,4 +18,10 @@ describe('Gilded Rose Unit Tests', function () {
         expect(testItemQuality(item, 0)).to.equal(expectedQuality);
     });
 
+    it('Test Sulfuras', function() {
+        const item = new Item("Sulfuras, Hand of Ragnaros", 50, 10);
+        const expectedQuality = 10;
+        expect(testItemQuality(item, 0)).to.equal(expectedQuality);
+    });
+
 });

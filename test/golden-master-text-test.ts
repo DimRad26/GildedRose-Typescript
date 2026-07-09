@@ -1,3 +1,4 @@
+// Master Gold Testing
 import { Item, GildedRose } from '../app/gilded-rose';
 import {expect} from "chai";
 

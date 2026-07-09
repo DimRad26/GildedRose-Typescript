@@ -1,3 +1,4 @@
+// App
 export class Item {
     name: string;
     sellIn: number;

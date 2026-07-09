@@ -25,7 +25,15 @@ export class GildedRose {
     }
 
     updateQuality() {
+        const agedBrie: string = 'Aged Brie';
+        const backstage: string = 'Backstage passes';
+        const sulfuras: string = 'Sulfuras';
+        const conjured: string = 'Conjured';
         for (let i = 0; i < this.items.length; i++) {
+            // Handle Sulfuras
+            if (this.items[i].name.startsWith(sulfuras))
+                continue;
+
             // Handle Expiration Date - sellIn
             this.items[i].sellIn -= 1;
 
@@ -33,21 +41,17 @@ export class GildedRose {
             var quality = this.items[i].quality;
             var sellIn = this.items[i].sellIn;
 
-            // Handle Sulfuras
-            if (name.startsWith('Sulfuras'))
-                continue;
-
             // Handle the update for each type of product
             let updateAmount: number = -1;
             let expirationCoeficient: number = sellIn < 0 ? 2 : 1;
 
             // Handle AgedBrie update amount
-            if (name == 'Aged Brie') {
+            if (name == agedBrie) {
                 updateAmount = +1;
             }
 
             // Handle Backstage passes update amount - based on sellIn
-            if (name.startsWith('Backstage passes')) {
+            if (name.startsWith(backstage)) {
                 updateAmount = +1;
                 if (sellIn < 10)
                     expirationCoeficient = 2;
@@ -59,7 +63,7 @@ export class GildedRose {
                 }
             }
 
-            if (name.startsWith('Conjured')) {
+            if (name.startsWith(conjured)) {
                 expirationCoeficient *= 2;
             }
 

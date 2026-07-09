@@ -25,37 +25,40 @@ export class GildedRose {
 
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
-            // Handle Sulfuras
-            if (this.items[i].name.startsWith('Sulfuras'))
-                continue;
-
             // Handle Expiration Date - sellIn
-            this.items[i].sellIn = this.items[i].sellIn - 1;
+            this.items[i].sellIn -= 1;
+
+            var name = this.items[i].name;
+            var quality = this.items[i].quality;
+            var sellIn = this.items[i].sellIn;
+
+            // Handle Sulfuras
+            if (name.startsWith('Sulfuras'))
+                continue;
 
             // Handle the update for each type of product
             let updateAmount: number = -1;
-            let expirationCoeficient: number = this.items[i].sellIn < 0 ? 2 : 1;
+            let expirationCoeficient: number = sellIn < 0 ? 2 : 1;
 
             // Handle AgedBrie update amount
-            if (this.items[i].name == 'Aged Brie') {
+            if (name == 'Aged Brie') {
                 updateAmount = +1;
             }
 
             // Handle Backstage passes update amount - based on sellIn
-            if (this.items[i].name.startsWith('Backstage passes')) {
+            if (name.startsWith('Backstage passes')) {
                 updateAmount = +1;
-                if (this.items[i].sellIn < 10)
+                if (sellIn < 10)
                     expirationCoeficient = 2;
-                if (this.items[i].sellIn < 5)
+                if (sellIn < 5)
                     expirationCoeficient = 3;
-                if (this.items[i].sellIn < 0) {
+                if (sellIn < 0) {
                     expirationCoeficient = -1;
-                    updateAmount = this.items[i].quality;
+                    updateAmount = quality;
                 }
             }
 
-            this.items[i].quality += expirationCoeficient * updateAmount;
-            this.items[i].quality = this.cap(this.items[i].quality);
+            this.items[i].quality = this.cap(quality + expirationCoeficient * updateAmount);
         }
 
         return this.items;

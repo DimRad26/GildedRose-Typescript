@@ -21,7 +21,15 @@ describe('Gilded Rose Unit Tests', function () {
     it('Test Sulfuras', function() {
         const item = new Item("Sulfuras, Hand of Ragnaros", 50, 10);
         const expectedQuality = 10;
-        expect(testItemQuality(item, 0)).to.equal(expectedQuality);
+        expect(testItemQuality(item, 20)).to.equal(expectedQuality);
+    });
+
+    it('Test IsBounded', function() {
+        const item1 = new Item("Aged Brie", 50, 45);
+        const item2 = new Item("Apples", 50, 5);
+        const expectedQuality = [50, 0];
+        expect([testItemQuality(item1, 10), testItemQuality(item2, 10)])
+            .to.deep.equal(expectedQuality);
     });
 
 });

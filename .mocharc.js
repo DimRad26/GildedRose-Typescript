@@ -6,5 +6,5 @@ module.exports = {
     "source-map-support/register"
   ],
   recursive: true,
-  spec: "test/*.spec.ts"
+  spec: ["test/*.spec.ts", "test/golden-master-text-test.ts"]
 }
